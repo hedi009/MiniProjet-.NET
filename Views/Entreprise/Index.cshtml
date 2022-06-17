@@ -1,0 +1,43 @@
+﻿@model IEnumerable<miniProjet.Models.Entreprise>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>atelier</h1>
+
+<p>
+    <a asp-action="Create"> Ajouter atelier</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EntrepriseName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntrepriseAdress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+              
+                @Html.DisplayFor(modelItem => item.EntrepriseName)
+            </td>
+            <td>
+
+                @Html.DisplayFor(modelItem => item.EntrepriseAdress)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EntrepriseID"><img src="https://img.icons8.com/fluency/48/undefined/approve-and-update.png"/></a> |
+                <a asp-action="Details" asp-route-id="@item.EntrepriseID"><img src="https://img.icons8.com/external-flat-icons-inmotus-design/30/undefined/external-details-engine-spare-parts-flat-icons-inmotus-design.png"/></a> |
+                <a asp-action="Delete" asp-route-id="@item.EntrepriseID"><img src="https://img.icons8.com/plasticine/40/undefined/filled-trash.png"/></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

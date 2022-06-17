@@ -1,0 +1,61 @@
+﻿@model IEnumerable<miniProjet.Models.Employe>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ouvrier</h1>
+
+<p>
+    <a asp-action="Create">Ajouter ouvrier</a>
+</p>
+<form class="form-inline my-2 my-lg-0" asp-action="Search" asp-controller="Employe">
+<p><input size="30" placeholder="tapez un Nom" type="search" name="name" />
+<select asp-items="ViewBag.EntrepriseID" name="entrepriseid" size=1.5 style="width:300px ; height:30px" ></select>
+<button class="btn btn-outline-success my-2 my-sm-0" type="submit">search</button>
+
+</p>
+</form>
+<a asp-action="Index" asp-controller="Employe"> Tous les ouvriers</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entreprise)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirthDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Entreprise.EntrepriseID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EmployeId"><img src="https://img.icons8.com/fluency/48/undefined/approve-and-update.png"/></a> |
+                <a asp-action="Details" asp-route-id="@item.EmployeId"><img src="https://img.icons8.com/external-flat-icons-inmotus-design/30/undefined/external-details-engine-spare-parts-flat-icons-inmotus-design.png"/></a> |
+                <a asp-action="Delete" asp-route-id="@item.EmployeId"><img src="https://img.icons8.com/plasticine/40/undefined/filled-trash.png"/></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
